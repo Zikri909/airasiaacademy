@@ -20,3 +20,4 @@ if show:
      st.write(pd.DataFrame({
     'Students': ['John', 'Lofa', 'Siti', 'Amy'],
     'Attendance Status': ['yes', 'yes', 'yes', 'no']
+    }))
