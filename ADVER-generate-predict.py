@@ -21,28 +21,5 @@ def user_input_features():
     return features
 zul = user_input_features()
 
-st.subheader('User Input parameters')
-st.write(zul)
 
-option = st.sidebar.selectbox(
-    'Select a mini project',
-     ['line chart','map','T n C','Long Process'])
 
-data = sns.load_dataset('ADVERTISING')
-X = data.drop(['SALES'],axis=1)
-Y = data.SALES.copy()
-
-modelGaussianSALES = GaussianNB()
-modelGaussianSALES.fit(X, Y)
-
-prediction = modelGaussianSALES.predict(zul)
-prediction_proba = modelGaussianSALES.predict_proba(zul)
-
-st.subheader('Class labels and their corresponding index number')
-st.write(Y.unique())
-
-st.subheader('Prediction')
-st.write(prediction)
-
-st.subheader('Prediction Probability')
-st.write(prediction_proba)
