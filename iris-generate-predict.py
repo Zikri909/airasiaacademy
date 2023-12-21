@@ -3,20 +3,18 @@ import pandas as pd
 import seaborn as sns
 from sklearn.naive_bayes import GaussianNB
 
-st.write("# Simple Iris Flower Prediction App")
-st.write("This app predicts the **Iris flower** type!")
+st.write("# Advertising Prediction App")
+st.write("This app predicts the **Number of Sales** type!")
 
 st.sidebar.header('User Input Parameters')
 
 def user_input_features():
-    sepal_length = st.sidebar.slider('Sepal length', 4.3, 7.9, 5.4)
-    sepal_width = st.sidebar.slider('Sepal width', 2.0, 4.4, 3.4)
-    petal_length = st.sidebar.slider('Petal length', 1.0, 6.9, 1.3)
-    petal_width = st.sidebar.slider('Petal width', 0.1, 2.5, 0.2)
-    data = {'sepal_length': sepal_length,
-            'sepal_width': sepal_width,
-            'petal_length': petal_length,
-            'petal_width': petal_width}
+    TV = st.sidebar.slider('TV', 1.0, 7.0, 4.0)
+    Radio = st.sidebar.slider('Radio', 1.0, 7.0, 4.0)
+    Newspaper = st.sidebar.slider('Newspaper', 1.0, 7.0, 4.0)
+    data = {'TV': TV,
+            'Radio': Radio,
+            'Newspaper': Newspaper}
     features = pd.DataFrame(data, index=[0])
     return features
 
@@ -25,18 +23,18 @@ df = user_input_features()
 st.subheader('User Input parameters')
 st.write(df)
 
-data = sns.load_dataset('iris')
-X = data.drop(['species'],axis=1)
-Y = data.species.copy()
+data = sns.load_dataset('Advertising')
+X = data.drop(['sales'],axis=1)
+Y = data.sales.copy()
 
-modelGaussianIris = GaussianNB()
-modelGaussianIris.fit(X, Y)
+modelGaussianAdvertising = GaussianNB()
+modelGaussianAdvertising.fit(X, Y)
 
-prediction = modelGaussianIris.predict(df)
-prediction_proba = modelGaussianIris.predict_proba(df)
+prediction = modelGaussianAdvertising.predict(df)
+prediction_proba = modelGaussianAdvertising.predict_proba(df)
 
 st.subheader('Class labels and their corresponding index number')
-st.write(Y.unique())
+st.write(Y.advertisingtype())
 
 st.subheader('Prediction')
 st.write(prediction)
